@@ -1,0 +1,6 @@
+django == 2.2.5
+psycopg2
+
+usuario administrador:
+admin
+contrasena123*
