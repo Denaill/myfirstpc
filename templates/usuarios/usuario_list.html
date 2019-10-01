@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div id="promo" style="background-image:url(/static/img/hardware2.jpg)">
+        <div class="jumbotron">
+            <h1 style="font-family: Acme, sans-serif;"><strong>MY FIRST PC</strong></h1>
+        </div>
+</div>
+<nav class="navbar navbar-light navbar-expand-md visible" style="width: auto;height: 56px;margin: 0px;padding: 0px;font-size: 16px;background-color: #eeeeee;">
+        <div class="container"><a class="navbar-brand text-left" href="#" style="font-family: Acme, sans-serif;font-size: 26px;height: 50px;margin: -7px;"><strong>USUARIOS</strong></a>
+            <div class="collapse navbar-collapse" id="navcol-2" style="width: 947px;"><input class="ml-auto" type="search" name="Buscar usuario" placeholder="Buscar usuario" style="width: 195px;margin: 0px;"></div>
+        </div>
+    </nav>
+    <div style="width: auto;height: auto;min-width: 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Nombre</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Apellidos</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Edad</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Cedula</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Telefono</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Direccion</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Tipo</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Correo</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Acciones</div>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if object_list %}
+                                {% for usuario in object_list %}
+                                <tr>
+                                    <td>{{ usuario.first_name }}</td>
+                                    <td>{{ usuario.last_name }}</td>
+                                    <td>{{ usuario.username }}</td>
+                                    <td>{{ usuario.cedula }}</td>
+                                    <td>{{ usuario.telefono }}</td>
+                                    <td>{{ usuario.address }}</td>
+                                    <td>{{ usuario.ciudad }}</td>
+                                    <td>{{ usuario.email }}</td>
+                                    <td>
+                                        <a class="rounded btn btn-outline-success p-3 mx-auto" href="{% url 'usuario_editar' usuario.id %}">Editar</a>
+                                        <a class="rounded btn btn-outline-danger p-3 mx-auto" href="{% url 'usuario_delete' usuario.id %}">Eliminar</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <h1>No existen usuarios</h1>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

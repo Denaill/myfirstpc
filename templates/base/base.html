@@ -1,0 +1,108 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" href="/static/img/favicon.png" type="image/png">
+    <meta charset="UTF.8">
+    {% block extrastatic %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme">
+    <link rel="stylesheet" href="/static/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/static/css/Footer-Basic.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/Social-Icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    {% endblock %}
+    <title>{% block title %}MyFirstPC {% endblock %}</title>
+</head>
+<body style="height: auto;">
+    {% block header %}
+    <nav class="navbar navbar-light navbar-expand-md bg-light border-dark border rounded shadow sticky-top">
+        <div class="container-fluid"><a class="navbar-brand text-uppercase" href="{% url 'index' %}"><img src="/static/img/mfpc2.jpg" href="/templates/base/base.html" width="180px"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <h5>Bienvenido a nuestra pagina {{ user.username }}</h5>
+                <ul class="nav navbar-nav ml-auto">
+                    {% if user.is_superuser == True %}
+                    <li class="nav-item" role="presentation"><a class="nav-link text-dark border rounded border-white"  href="{% url 'producto_view' %}" style="font-family: Acme, sans-serif;background-color: #eeeeee;"><strong>AGREGAR PRODUCTO</strong></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-dark border rounded border-white"  href="{% url 'registrar' %}" style="font-family: Acme, sans-serif;background-color: #eeeeee;"><strong>AGREGAR USUARIOS</strong></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-dark border rounded border-white"  href="{% url 'usuario_listar' %}" style="font-family: Acme, sans-serif;background-color: #eeeeee;"><strong>VER USUARIOS</strong></a></li>
+                    {% endif %}
+                    <li class="nav-item" role="presentation"><a class="nav-link text-dark border rounded border-white"  href="{% url 'producto_listar' %}" style="font-family: Acme, sans-serif;background-color: #eeeeee;"><strong>LISTA PRODUCTOS</strong></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-dark border rounded border-white" href="#" style="font-family: Acme, sans-serif;background-color: #eeeeee;"><strong>EMPRESA</strong></a></li>
+                    {% if user.is_active == True %}
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger mx-1" type="button">SALIR</a></div>
+                    {% endif %}
+                    {% if user.is_active != True %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-success mx-1" type="button">INICIAR SESIÓN</a></div>
+                    {% endif %}
+                    
+                </ul>
+        </div>
+    </nav>
+    {% endblock %}
+
+    {% block content %}
+    <div id="promo" style="background-image:url(/static/img/hardware2.jpg)">
+        <div class="jumbotron">
+            <h1 style="font-family: Acme, sans-serif;"><strong>MY FIRST PC</strong></h1>
+            <p class="text-center text-dark"><br>&nbsp;MY FIRST PC surge como respuesta ante la ausencia de información al momento de comprar un computador, es decir, normalmente un usuario adquiere un equipo que no está ajustado a sus necesidades o simplemente como consecuencia de estrategias
+                de venta, dado que el objetivo principal es vender más no asesorar, nuestra meta es asesorar nuestro cliente recibiendo soporte al momento de la compra, evitando costos innecesarios y asegurando un rendimiento ajustado a sus requerimientos.<br></p>
+            <p></p>
+        </div>
+        <div class="bd-example">
+    </div>
+    </div>
+    
+    <!-- Cartas -->
+    <div class="container rounded my-5">
+        <div class="card-deck">
+        <div class="card rounded border border-success">
+            <img src="/static/img/card1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Todos los articulos disponibles</h5>
+            <p class="card-text">Contamos con una gran variedad de articulos de la mejor calidad para que puedas armar tu computador tranquilo y seguro.</p>
+            <p class="card-text"><small class="text-muted">Articulos de todo tipo, gamer, empresarial entre otros.</small></p>
+            </div>
+        </div>
+        <div class="card rounded border border-success">
+            <img src="/static/img/card2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Envio rapido y seguro</h5>
+            <p class="card-text">Tenemos convenios con empresas de envio y aseguradoras las cuales protegeran tu pedido hasta que llegue a la puerta de tu casa, rapido y seguro.</p>
+            <p class="card-text"><small class="text-muted">Envios a todo Colombia</small></p>
+            </div>
+        </div>
+        <div class="card rounded border border-success">
+            <img src="/static/img/card3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Al mejor precio</h5>
+            <p class="card-text">Tenemos los mejores precios individuales y al por mayor para nuestros clientes.</p>
+            <p class="card-text"><small class="text-muted">El precio no cuenta con el envio</small></p>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block footer %}
+    <div class="footer-basic" style="padding: auto;width: auto;">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-email"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul>
+                <li><a href="/Primer sprint/index.html">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Acerca de nosotros</a></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <p class="copyright">MY FIRST PC © 2019</p>
+        </footer>
+    </div>
+    {% endblock %}
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

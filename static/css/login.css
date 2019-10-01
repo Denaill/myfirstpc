@@ -1,0 +1,51 @@
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
+
+html,body{
+background-image: url('/static/img/hardware2.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+.container{
+height: 100%;
+align-content: center;
+border-radius: 25px;
+}
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,5,0,0.9) !important;
+border-radius: 25px;
+}
+
+.card-header h3{
+color: white;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #0B610B;
+color: black;
+border:0 !important;
+border-radius: 5px;
+}
+
+input:focus{
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}

@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div id="promo" style="background-image:url(/static/img/hardware2.jpg)">
+        <div class="jumbotron">
+            <h1 style="font-family: Acme, sans-serif;"><strong>MY FIRST PC</strong></h1>
+        </div>
+</div>
+<nav class="navbar navbar-light navbar-expand-md visible" style="width: auto;height: 56px;margin: 0px;padding: 0px;font-size: 16px;background-color: #eeeeee;">
+        <div class="container"><a class="navbar-brand text-left" href="#" style="font-family: Acme, sans-serif;font-size: 26px;height: 50px;margin: -7px;"><strong>PRODUCTOS</strong></a>
+            <div class="collapse navbar-collapse" id="navcol-2" style="width: 947px;"><input class="ml-auto" type="search" name="Buscar Producto" placeholder="Buscar Producto" style="width: 195px;margin: 0px;"></div>
+        </div>
+    </nav>
+    <div style="width: auto;height: auto;min-width: 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Nombre</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Categoria</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">ID</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Descripción</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Plataforma</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Precio</div>
+                                    </td>
+                                    <td>
+                                        <div class="rounded p-3 mb-2 bg-success text-white">Fecha</div>
+                                    </td>
+                                    {% if user.is_superuser == True %}
+                                        <td>
+                                            <div class="rounded p-3 mb-2 bg-success text-white">Acciones</div>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if object_list %}
+                                {% for producto in object_list %}
+                                <tr>
+                                    <td>{{ producto.nombre }}</td>
+                                    <td>{{ producto.categoria }}</td>
+                                    <td>{{ producto.id_producto }}</td>
+                                    <td>{{ producto.descripcion }}</td>
+                                    <td>{{ producto.plataforma }}</td>
+                                    <td>{{ producto.valor }}</td>
+                                    <td>{{ producto.fecha_publicacion }}</td>
+                                    {% if user.is_superuser == True %}
+                                        <td>
+                                            <a class="rounded btn btn-outline-success p-3 mx-auto" href="{% url 'producto_editar' producto.id %}">Editar</a>
+                                            <a class="rounded btn btn-outline-danger p-3 mx-auto" href="{% url 'producto_delete' producto.id %}">Eliminar</a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <h1>No existen productos</h1>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <ul class="pager">
+            <div class="row">
+                <div class="col text-center">
+                    <li>
+                        {% if page_obj.has_previous %}
+                        <a class="rounded btn btn-dark p-1" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        {% endif %}
+                    </li>
+                </div>
+                <div class="col text-center">
+                    <li>
+                        {% if page_obj.has_next %}
+                        <a class="rounded btn btn-dark p-1" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        {% endif %}
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

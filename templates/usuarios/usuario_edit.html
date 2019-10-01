@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container rounded my-5">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-center my-5">
+            <button type="submit" class="btn btn-outline-success">Editar usuario</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

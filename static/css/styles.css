@@ -1,0 +1,27 @@
+#promo {
+  text-align: center;
+  padding: 60px;
+  background: url('/static/img/hardware1.jpg') no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 1200px) {
+  #promo {
+    padding: 20px;
+  }
+}
+
+#promo .jumbotron {
+  border-radius: 25px;
+  padding: 41px;
+  background-color: rgba(255,255,255,0.75);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  #promo .jumbotron {
+    padding: 20px;
+  }
+}
+
